@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@id/t_bar"
+    android:layout_width="match_parent"
+    android:layout_height="50dp">
+
+    <!--android:clipToPadding="true"-->
+    <!--android:fitsSystemWindows="true"-->
+    <!--android:paddingTop="@dimen/status_bar_height"-->
+    <RelativeLayout
+        android:id="@id/rl_barGroup"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+
+        <LinearLayout
+            android:id="@id/ll_leftGroup"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="left"
+            android:orientation="horizontal">
+
+            <com.cree.smallparts.widget.SwitchIconView
+                android:id="@+id/iv_back"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="13dp"
+                android:background="?selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:scaleType="centerInside"
+                android:visibility="gone"
+                app:si_tint_color="@color/cmvp_white"
+                app:srcCompat="@drawable/cmvp_ve_ic_back"/>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@id/ll_centerGroup"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:textColor="@color/cmvp_white"
+                android:textSize="@dimen/cmvp_title_22"/>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@id/ll_rightGroup"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="right"
+            android:orientation="horizontal">
+
+
+        </LinearLayout>
+    </RelativeLayout>
+
+</FrameLayout>

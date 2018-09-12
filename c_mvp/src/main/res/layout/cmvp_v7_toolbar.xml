@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <!--叠加布局的时候用这个-->
+    <include layout="@layout/cmvp_v7_frame_content"/>
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <cree.mvp.ui.bar.CustomToolbarView
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            app:contentInsetStart="0dp"
+            app:titleTextColor="@android:color/white">
+
+            <include layout="@layout/cmvp_v7_toolbar_title"/>
+
+        </cree.mvp.ui.bar.CustomToolbarView>
+
+    </android.support.design.widget.AppBarLayout>
+    <!--线性布局的时候用这个-->
+    <include layout="@layout/cmvp_v7_linear_content"/>
+</android.support.design.widget.CoordinatorLayout>

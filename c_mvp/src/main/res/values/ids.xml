@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="t_bar" type="id">t_bar</item>
+    <item name="ll_leftGroup" type="id">ll_leftGroup</item>
+    <item name="lLeftGroup" type="id">lLeftGroup</item>
+    <item name="tv_title" type="id">tv_title</item>
+    <item name="le" type="id">le</item>
+    <item name="ll_centerGroup" type="id">ll_centerGroup</item>
+    <item name="lCenterGroup" type="id">lCenterGroup</item>
+    <item name="ll_rightGroup" type="id">ll_rightGroup</item>
+    <item name="lRightGroup" type="id">lRightGroup</item>
+    <item name="rl_barGroup" type="id">rl_barGroup</item>
+    <item name="mRlBarGroup" type="id">mRlBarGroup</item>
+
+</resources>

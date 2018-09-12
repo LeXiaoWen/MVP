@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.cree.smallparts.widget.SwitchIconView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/iv_addView"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:layout_marginRight="13dp"
+    android:background="?selectableItemBackgroundBorderless"
+    android:clickable="true"
+    android:scaleType="centerInside"
+    app:si_tint_color="@color/cmvp_white"
+    app:srcCompat="@drawable/cmvp_ve_ic_back"/>

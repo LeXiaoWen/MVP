@@ -1,0 +1,166 @@
+apply plugin: 'com.android.library'
+apply plugin: 'realm-android'
+apply plugin: 'me.tatarka.retrolambda'
+apply plugin: 'maven'
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
+
+    lintOptions {
+        abortOnError false
+    }
+    dexOptions {
+        preDexLibraries = false
+    }
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.4.1-SNAPSHOT"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+//以下三项要在app.build里面设置
+//        multiDexEnabled true
+//        jackOptions {
+//            enabled true
+//        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+//java1.8也需要在app.build里面配置一下
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:appcompat-v7:25.3.0'
+    testCompile 'junit:junit:4.12'
+    //---------------------------dex multi---------------------------------------
+    compile 'com.android.support:multidex:1.0.1'
+    //---------------------------net facbook fresco---------------------------------------
+    compile 'com.facebook.fresco:fresco:1.1.0'
+    compile 'com.facebook.fresco:animated-gif:1.1.0'
+    compile "com.facebook.fresco:imagepipeline-okhttp3:0.12.0+"
+    //---------------------------net retrofit--------------------------------------
+    compile 'com.squareup.retrofit2:retrofit:2.0.0-beta3'
+    compile 'com.squareup.okhttp3:logging-interceptor:3.1.2'
+//    compile 'io.reactivex:rxandroid:1.0.1'
+    compile 'com.squareup.retrofit2:converter-gson:2.0.0-beta4'
+    compile ('com.squareup.retrofit2:adapter-rxjava:2.0.0-beta4'){
+        exclude module: 'rxjava'
+    }
+    compile 'com.google.code.gson:gson:2.7'
+    //---------------------------base dagger2--------------------------------------
+
+    compile 'com.google.dagger:dagger:2.10-rc4'
+//    classpath 'com.neenbedankt.gradle.plugins:android-apt:1.4'
+//    apply plugin: 'com.neenbedankt.android-apt'
+    //     在具体的App中以apt插件的方式再导入
+//    apt 'com.google.dagger:dagger-compiler:2.10-rc4'
+    compile 'org.glassfish:javax.annotation:10.0-b28'
+
+    //---------------------------rx---------------------------------
+    compile ('io.reactivex:rxandroid:1.2.1'){
+        exclude module: 'rxjava'
+    }
+    compile 'io.reactivex:rxjava:1.2.1'
+    //---------------------------ui butterknife--------------------------------------
+    compile 'com.jakewharton:butterknife:8.5.1'
+    //    在具体的App中以apt插件的方式再导入
+//    classpath 'com.neenbedankt.gradle.plugins:android-apt:1.4'
+//    apply plugin: 'com.neenbedankt.android-apt'
+//    apt 'com.google.dagger:dagger-compiler:2.0'
+    //---------------------------ui control--------------------------------------
+    compile 'com.android.support:recyclerview-v7:25.3.0'
+    compile 'com.android.support:design:25.3.0'
+    compile 'com.android.support:cardview-v7:25.3.0'
+//    compile 'me.drakeet.materialdialog:library:1.3.1'
+    //---------------------------ui xrecylerView这个包会导入v7.recyclerview,所以不要再重复导入recylerview--------------------------------------
+    compile 'com.jcodecraeer:xrecyclerview:1.3.2'
+    //---------------------------ui galleryfinal--------------------------------------
+//    compile 'cn.finalteam:galleryfinal:1.4.8.7'
+    compile ('cn.finalteam.rxgalleryfinal:library:0.0.8'){
+        exclude module: 'rxjava'
+        exclude module: 'rxandroid'
+    }
+    compile 'com.android.support:support-v4:25.3.0'
+    //---------------------------ui materialdesign widget---------------------------------
+//    compile 'com.github.rey5137:material:1.2.3.1-SNAPSHOT'
+//    https://github.com/rey5137/material 这是上面控件的主页  有使用说明
+    //---------------------------util log--------------------------------------
+    compile 'com.orhanobut:logger:1.15'
+    //---------------------------debug stetho在debug模式的时候会开启--------------------------------------
+    compile 'com.facebook.stetho:stetho:1.3.1'
+    //---------------------------realm数据库扩展---------------------------------
+    //配置一下仓库地址
+    /* maven {
+        url 'https://github.com/uPhyca/stetho-realm/raw/master/maven-repo'
+    }*/
+    //配置realm插件
+    //classpath "io.realm:realm-gradle-plugin:2.0.2"
+    //启用插件
+    //apply plugin: 'realm-android'
+    //---------------------------realm 查看框架(和stetho结合起来用的)---------------------------------
+    compile 'com.uphyca:stetho_realm:2.0.0'
+    //---------------------------权限管理---------------------------------
+    compile 'com.tbruyelle.rxpermissions:rxpermissions:0.9.4@aar'
+    //---------------------------EventBus---------------------------------
+    compile 'org.greenrobot:eventbus:3.0.0'
+    //---------------------------约束布局---------------------------------
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    //---------------------------小部件库---------------------------------
+    compile 'com.cree:smallparts:1.0-SNAPSHOT@aar'
+    //-----------------------------leakcanary 内存泄露分析工具-------------------------------
+    compile 'com.squareup.leakcanary:leakcanary-android:1.5.1'
+//    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.1'
+//    testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.1'
+//    compile 'me.jessyan:progressmanager:1.3.1'
+}
+//---------------------------执行版本合并 start---------------------------------
+configurations.all {
+    resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+        def requested = details.requested
+        if (requested.group == 'com.android.support') {
+            if (!requested.name.startsWith("multidex")) {
+                details.useVersion '25.3.1'
+            }
+        }
+    }
+}
+//---------------------------版本合并 end---------------------------------
+uploadArchives {
+    repositories.mavenDeployer {
+        //---------------------------快照仓库地址---------------------------------
+        repository(url: 'http://192.168.100.212:8081/nexus/content/repositories/snapshots_android/') {
+            authentication(userName: "admin",//用户名
+                    password: "admin123")//密码
+        }
+        //------------------------------------------------------------
+        //---------------------------正式仓库---------------------------------
+//        repository(url: 'http://192.168.100.212:8081/nexus/content/repositories/release_android/') {
+////仓库地址
+//            authentication(userName: "admin",//用户名
+//                    password: "admin123")//密码
+//        }
+        //---------------------------end---------------------------------
+        pom.project {
+            name 'cree-library'
+            packaging 'aar'
+            description 'none'
+            url 'http://192.168.100.212:8081/nexus/content/repositories/com.cree/'//仓库地址
+            groupId "com.cree"
+            artifactId "c_mvp" //LibA
+            version android.defaultConfig.versionName
+        }
+    }
+}

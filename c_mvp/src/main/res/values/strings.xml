@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Cree_MVP</string>
+    <string name="cmvp_open">menu_open</string>
+    <string name="cmvp_close">menu_close</string>
+</resources>
