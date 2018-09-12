@@ -1,7 +1,8 @@
 apply plugin: 'com.android.library'
-apply plugin: 'realm-android'
 apply plugin: 'me.tatarka.retrolambda'
-apply plugin: 'maven'
+apply plugin: 'com.github.dcendents.android-maven'
+
+group = 'com.github.LeXiaoWen'
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
@@ -111,7 +112,7 @@ dependencies {
     //启用插件
     //apply plugin: 'realm-android'
     //---------------------------realm 查看框架(和stetho结合起来用的)---------------------------------
-    compile 'com.uphyca:stetho_realm:2.0.0'
+//    compile 'com.uphyca:stetho_realm:2.0.0'
     //---------------------------权限管理---------------------------------
     compile 'com.tbruyelle.rxpermissions:rxpermissions:0.9.4@aar'
     //---------------------------EventBus---------------------------------
@@ -119,7 +120,7 @@ dependencies {
     //---------------------------约束布局---------------------------------
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     //---------------------------小部件库---------------------------------
-    compile 'com.cree:smallparts:1.0-SNAPSHOT@aar'
+//    compile 'com.cree:smallparts:1.0-SNAPSHOT@aar'
     //-----------------------------leakcanary 内存泄露分析工具-------------------------------
     compile 'com.squareup.leakcanary:leakcanary-android:1.5.1'
 //    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.1'
@@ -138,29 +139,29 @@ configurations.all {
     }
 }
 //---------------------------版本合并 end---------------------------------
-uploadArchives {
-    repositories.mavenDeployer {
-        //---------------------------快照仓库地址---------------------------------
-        repository(url: 'http://192.168.100.212:8081/nexus/content/repositories/snapshots_android/') {
-            authentication(userName: "admin",//用户名
-                    password: "admin123")//密码
-        }
-        //------------------------------------------------------------
-        //---------------------------正式仓库---------------------------------
-//        repository(url: 'http://192.168.100.212:8081/nexus/content/repositories/release_android/') {
-////仓库地址
+//uploadArchives {
+//    repositories.mavenDeployer {
+//        //---------------------------快照仓库地址---------------------------------
+//        repository(url: 'http://192.168.100.212:8081/nexus/content/repositories/snapshots_android/') {
 //            authentication(userName: "admin",//用户名
 //                    password: "admin123")//密码
 //        }
-        //---------------------------end---------------------------------
-        pom.project {
-            name 'cree-library'
-            packaging 'aar'
-            description 'none'
-            url 'http://192.168.100.212:8081/nexus/content/repositories/com.cree/'//仓库地址
-            groupId "com.cree"
-            artifactId "c_mvp" //LibA
-            version android.defaultConfig.versionName
-        }
-    }
-}
+//        //------------------------------------------------------------
+//        //---------------------------正式仓库---------------------------------
+////        repository(url: 'http://192.168.100.212:8081/nexus/content/repositories/release_android/') {
+//////仓库地址
+////            authentication(userName: "admin",//用户名
+////                    password: "admin123")//密码
+////        }
+//        //---------------------------end---------------------------------
+////        pom.project {
+////            name 'cree-library'
+////            packaging 'aar'
+////            description 'none'
+////            url 'http://192.168.100.212:8081/nexus/content/repositories/com.cree/'//仓库地址
+////            groupId "com.cree"
+////            artifactId "c_mvp" //LibA
+////            version android.defaultConfig.versionName
+////        }
+//    }
+//}
