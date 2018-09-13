@@ -11,8 +11,6 @@ import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import cree.mvp.net.progressmanager.ProgressManager;
-import cree.mvp.util.data.AppUtils;
-import cree.mvp.util.data.ScreenUtils;
 import okhttp3.Cache;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -73,7 +71,7 @@ public class Api {
     }
 
     Interceptor headInterceptor = (chain) -> chain.proceed(chain.request().newBuilder()
-            .addHeader("CLI_INFO", "phone&Android&" + AppUtils.getAppVersionName(context) + "&" + ScreenUtils.getScreenWidth() + "," + ScreenUtils.getScreenHeight())
+//            .addHeader("CLI_INFO", "phone&Android&" + AppUtils.getAppVersionName(context) + "&" + ScreenUtils.getScreenWidth() + "," + ScreenUtils.getScreenHeight())
 //            .addHeader("Content-Type", "application/json")
             .build());
 
