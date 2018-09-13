@@ -2,16 +2,23 @@ package cree.mvp.net;
 
 
 import android.content.Context;
+import android.content.SharedPreferences;
 
+import com.franmontiel.persistentcookiejar.PersistentCookieJar;
+import com.franmontiel.persistentcookiejar.cache.SetCookieCache;
+import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
 
 import cree.mvp.net.progressmanager.ProgressManager;
 import okhttp3.Cache;
+import okhttp3.Cookie;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -39,6 +46,11 @@ public class Api {
     private static String url;
     private OkHttpClient mOkHttpClient;
 
+    private static final String COOKIE_PREFS = "okgo_cookie";           //cookie使用prefs保存
+    private static final String COOKIE_NAME_PREFIX = "cookie_";         //cookie持久化的统一前缀
+
+    private static Map<String, ConcurrentHashMap<String, Cookie>> cookies;
+    private static SharedPreferences cookiePrefs;
 
     private static class SingletonHolderUrl {
         private static Api INSTANCE = new Api();
@@ -84,11 +96,13 @@ public class Api {
 
         File cacheFile = new File(context.getCacheDir(), "cache");
         Cache cache = new Cache(cacheFile, 1024 * 1024 * 100); //100Mb
+        PersistentCookieJar persistentCookieJar = new PersistentCookieJar(new SetCookieCache(), new SharedPrefsCookiePersistor(context));
 
         OkHttpClient.Builder okhttpBuilder = new OkHttpClient.Builder()
+                .cookieJar(persistentCookieJar)
                 .readTimeout(7676, TimeUnit.MILLISECONDS)
                 .connectTimeout(7676, TimeUnit.MILLISECONDS)
-                .addInterceptor(headInterceptor)
+//                .addInterceptor(headInterceptor)
                 .addInterceptor(logInterceptor)
                 .addNetworkInterceptor(new HttpCacheInterceptor())
                 .cache(cache);
@@ -105,6 +119,7 @@ public class Api {
                 .build();
         service = retrofit.create(ApiService.class);
     }
+
 
 
     public <T> T create(final Class<T> service) {
